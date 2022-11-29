@@ -3,21 +3,21 @@
         <div class="nav__links">
             <app-logo></app-logo>
             <div style="padding-left: 60px;">
-                <a>Home</a>
+                <a routerLinkActive="active" routerLink="home">Home</a>
             </div>
         </div>
         <div class="nav__links">
-            <div style="position: relative;">
+            <div style="position: relative;" [hidden]="!isLogged">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <div class="badge">
                     1
                 </div>
             </div>
             <div>
-                <a>Account</a>
+                <a [hidden]="!isLogged">Account</a>
             </div>
             <div>
-                <a>Log in</a>
+                <a [hidden]="isLogged" routerLinkActive="active" routerLink="login">Log in</a>
             </div>
         </div>
     </nav>
