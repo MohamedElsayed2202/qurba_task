@@ -1,0 +1,22 @@
+.home__container{
+    padding-top: 114px;
+    width: 85%;
+    margin: auto;
+}
+.home__breadcrumb{
+    font-size: 18px;
+    line-height: 21.78px;
+    font-weight: 700;
+    margin-bottom: 51px;
+}
+.home__main{
+    display: flex;
+    justify-content: space-between;
+}
+.home__main .products{
+    width: 75%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    row-gap: 20px;
+}

@@ -1,1 +1,9 @@
-<p>home works!</p>
+<section class="home__container">
+    <p class="home__breadcrumb">Home / Products / {{category}}</p>
+    <div class="home__main">
+        <app-categories></app-categories>
+        <div class="products">
+            <app-product-item *ngFor="let product of allProducts" [product]="product"></app-product-item>
+        </div>
+    </div>
+</section>
