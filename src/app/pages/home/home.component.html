@@ -2,8 +2,17 @@
     <p class="home__breadcrumb">Home / Products / {{category}}</p>
     <div class="home__main">
         <app-categories></app-categories>
-        <div class="products">
-            <app-product-item *ngFor="let product of allProducts" [product]="product"></app-product-item>
+        <div class="left-side">
+            <ng-container *ngIf="productsByCategory.length > 0">
+                <div class="products">
+                    <app-product-item *ngFor="let product of productsByCategory" [product]="product"></app-product-item>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="productsByCategory.length === 0">
+                <div class="products">
+                    <app-product-item *ngFor="let product of allProducts" [product]="product"></app-product-item>
+                </div>
+            </ng-container>
         </div>
     </div>
 </section>

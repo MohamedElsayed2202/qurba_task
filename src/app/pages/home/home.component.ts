@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
 
   category: string = '';
   allProducts: ProductItem[] = [];
+  productsByCategory: ProductItem[] = [];
   constructor(private products: ProductsService) { }
 
   ngOnInit(): void {
@@ -18,6 +19,9 @@ export class HomeComponent implements OnInit {
     });
     this.products.getAllProducts(0).subscribe(value => {
       this.allProducts = value;
+    });
+    this.products.getProductsByCategory().subscribe(value => {
+      this.productsByCategory = value;
     })
   }
 

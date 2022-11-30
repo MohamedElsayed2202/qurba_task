@@ -13,8 +13,11 @@
     display: flex;
     justify-content: space-between;
 }
-.home__main .products{
+.home__main .left-side{
     width: 75%;
+}
+.home__main .left-side .products{
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
