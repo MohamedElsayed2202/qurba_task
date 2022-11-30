@@ -12,15 +12,18 @@ export class HomeComponent implements OnInit {
   allProducts: ProductItem[] = [];
   productsByCategory: ProductItem[] = [];
   productsBySearch: ProductItem[] = [];
+  page: number = 1;
+  total: number = 100;
   constructor(private products: ProductsService) { }
 
   ngOnInit(): void {
     this.products.getSelectedCategoty().subscribe(value => {
       this.category = value;
     });
-    this.products.getAllProducts(0).subscribe(value => {
+    this.products.getAllProducts().subscribe(value => {
       this.allProducts = value;
-    });
+    })
+    this.products.setAllProducts(this.page);
     this.products.getProductsByCategory().subscribe(value => {
       this.productsByCategory = value;
     })
@@ -29,4 +32,14 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  getNextPage(page: number){
+    this.page = page;
+    this.products.setAllProducts(page);
+    this.scrollBackToTop();
+  }
+
+  scrollBackToTop():void {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
 }

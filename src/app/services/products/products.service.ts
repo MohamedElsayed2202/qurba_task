@@ -66,12 +66,16 @@ setSelectedCategory(category: string): void {
   }
 }
 
-getAllProducts(skip: number): BehaviorSubject<ProductItem[]>{
+getAllProducts(): BehaviorSubject<ProductItem[]>{
+  return this.products;
+}
+
+setAllProducts(page: number): void{
+  let skip = (page - 1) * 9 
   this.httpClient.get<Products>(`${environment.ProductsApi}&skip=${skip}`)
   .subscribe(value => {
     this.products.next(value.products);
   });
-  return this.products;
 }
 
 private setProductsByCategpry(): void{

@@ -15,7 +15,11 @@
             </ng-container>
             <ng-container *ngIf="productsByCategory.length === 0 && productsBySearch.length === 0">
                 <div class="products">
-                    <app-product-item *ngFor="let product of allProducts" [product]="product"></app-product-item>
+                    <app-product-item *ngFor="let product of allProducts  | paginate:{id:'server',itemsPerPage:9, currentPage: page, totalItems: total}" [product]="product"></app-product-item>
+                </div>
+                <div class="paginator">
+                    <pagination-controls previousLabel=""
+                    nextLabel="" (pageChange)="getNextPage($event)" id="server"></pagination-controls>
                 </div>
             </ng-container>
         </div>
