@@ -20,6 +20,7 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
     // calling the getAllCategoreis and assign the returned value to this local variable
     this.products.getAllCategories().subscribe(value => {
+      this.categories = [];
       value.forEach((element, index) => {
         let item:CategoryItem = {
           id: index +1 ,
