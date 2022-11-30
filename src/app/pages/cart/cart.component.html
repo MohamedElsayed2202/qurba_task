@@ -1,0 +1,14 @@
+
+    <div class="cart__container">
+        <ng-container *ngIf="cart.products.length === 0">
+            <p>No items added to cart</p>
+        </ng-container>
+        <ng-container *ngIf="cart.products.length > 0">
+            <p>Products count: {{cart.products.length}}</p>
+            <ul>
+                <li *ngFor="let prod of cart.products">
+                    Product id: {{prod.id}}, Product quantity: {{prod.qty}}
+                </li>
+            </ul>
+        </ng-container>
+    </div>

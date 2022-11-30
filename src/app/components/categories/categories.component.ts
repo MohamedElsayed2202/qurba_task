@@ -18,6 +18,7 @@ export class CategoriesComponent implements OnInit {
   constructor(private products: ProductsService) { }
 
   ngOnInit(): void {
+    // calling the getAllCategoreis and assign the returned value to this local variable
     this.products.getAllCategories().subscribe(value => {
       value.forEach((element, index) => {
         let item:CategoryItem = {
@@ -31,15 +32,21 @@ export class CategoriesComponent implements OnInit {
   }
 
   selectCategory(item: CategoryItem):void{
+    // listening to the change of value
     this.categories.forEach(element => {
       if(element.id === item.id){
+        // if condition is trur just only mark the selected value
         element.selected = !element.selected;
         if(element.selected){
+        // if the condition is trur call setSelectedCategory
+
           this.products.setSelectedCategory(item.title);
         }else{
+          // if not trur call setSelectedCategory with empty string
           this.products.setSelectedCategory('');
         }
       }else{
+        // if condition is not trur unmark all values
         element.selected = false;
       }
     });

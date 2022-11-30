@@ -1,25 +1,29 @@
 <section class="home__container">
+    <!-- to show breadcrumb with also selected category if user filterd products py category -->
     <p class="home__breadcrumb">Home / Products / {{category}}</p>
     <div class="home__main">
         <app-categories></app-categories>
         <div class="left-side">
+            <!-- to display searched products  -->
             <ng-container *ngIf="productsBySearch.length > 0 ">
                 <div class="products">
                     <app-product-item *ngFor="let product of productsBySearch" [product]="product"></app-product-item>
                 </div>
             </ng-container>
+            <!-- to display filterd products -->
             <ng-container *ngIf="productsByCategory.length > 0 && productsBySearch.length === 0">
                 <div class="products">
                     <app-product-item *ngFor="let product of productsByCategory" [product]="product"></app-product-item>
                 </div>
             </ng-container>
+            <!-- to display all products with pagination and also saving state of pagination if user searche or filterd products -->
             <ng-container *ngIf="productsByCategory.length === 0 && productsBySearch.length === 0">
                 <div class="products">
                     <app-product-item *ngFor="let product of allProducts  | paginate:{id:'server',itemsPerPage:9, currentPage: page, totalItems: total}" [product]="product"></app-product-item>
                 </div>
                 <div class="paginator">
                     <pagination-controls previousLabel=""
-                    nextLabel="" (pageChange)="getNextPage($event)" id="server"></pagination-controls>
+                    nextLabel="" (pageChange)="changePage($event)" id="server"></pagination-controls>
                 </div>
             </ng-container>
         </div>

@@ -1,0 +1,18 @@
+
+.cart__container{
+    width: 100%;
+    min-height: 72.8vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cart__container p{
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+.cart__container ul li{
+    margin: 10px 0;
+}

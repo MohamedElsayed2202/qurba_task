@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Cart, CartService } from 'src/app/services/cart/cart.service';
 import { ProductsService } from 'src/app/services/products/products.service';
 
 @Component({
@@ -11,16 +12,22 @@ export class NavbarComponent implements OnInit {
 
   isLogged:boolean =  false;
   keyword: string = ''
-  constructor(private auth: AuthService, private products: ProductsService) { }
+  cart: Cart = {products: []};
+  constructor(private auth: AuthService, private products: ProductsService, private cartServ: CartService) { }
 
   ngOnInit(): void {
+    // here we are listening to login status changes
     this.auth.getIsLoggedIn().subscribe(value => {
       this.isLogged = value;
+    })
+    // here we are listening to cart status changes to notify html doc with it
+    this.cartServ.getCart().subscribe(value => {
+      this.cart = value;
     })
   }
 
   search():void{
-    console.log(this.keyword);
+    // listening for input change to trigre setProdctsBySearch
     this.products.setProdctsBySearch(this.keyword);
   }
 }

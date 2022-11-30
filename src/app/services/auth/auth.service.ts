@@ -20,22 +20,25 @@ export class AuthService {
         'Content-Type': 'application/json'
       })
     }
-   }
+  }
 
 
-   login(cred: any):void{
+  //  calling login api with user cred to authenticate the user and saving token to locale storage 
+  login(cred: any): void {
     this.httpClient.post<any>(environment.AuthApi, JSON.stringify(cred), this.headerOptions)
-    .subscribe(value => {
-      localStorage.setItem('token', value.token);
-      this.router.navigateByUrl("/home");
-    })
-   }
+      .subscribe(value => {
+          localStorage.setItem('token', value.token);
+          this.router.navigateByUrl("");
+      })
+  }
 
-   getIsLoggedIn(): BehaviorSubject<boolean>{
+  //  to return the login state
+  getIsLoggedIn(): BehaviorSubject<boolean> {
     return this.isLoggedIn;
-   }
-   
-  setIsLoggedIn(value: boolean):void{
+  }
+
+  //  to change the login state
+  setIsLoggedIn(value: boolean): void {
     this.isLoggedIn.next(value);
   }
 }

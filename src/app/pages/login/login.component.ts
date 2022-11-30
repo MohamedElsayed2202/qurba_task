@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   constructor(private auth: AuthService) {
+    // declareing the form controlles and its validation using reactive form
     this.loginForm = new FormGroup({
       userName: new FormControl('', [Validators.required]),
       password: new FormControl('', Validators.required)
@@ -20,18 +21,22 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // to get all form controlles
   get formControlles() {
     return this.loginForm.controls;
   }
 
+  // to return error message based on if user name controll has error or not
   getUserNameErrorMessage(){
     return this.loginForm.controls['userName'].hasError('required') ? 'required field': '';
   }
 
+  // to return error message based on if password controll has error or not
   getPasswordErrorMessage(){
     return this.loginForm.controls['password'].hasError('required') ? 'required field': '';
   }
 
+  // to submit the form data and calling login method to get user token 
   onSubmit():void{
     const cred = {
       username: this.loginForm.controls['userName'].value,

@@ -7,14 +7,19 @@
             </div>
         </div>
         <div class="nav__links">
-            <div>
+            <!-- here i use att hidden to show/hide routes based on login state -->
+            <div [hidden]="!isLogged">
                 <input type="text" placeholder="Search" [(ngModel)]="keyword" (change)="search()">
             </div>
-            <div style="position: relative;" [hidden]="!isLogged">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <div class="badge">
-                    1
-                </div>
+            <div>
+                <a routerLinkActive="active" routerLink="cart">
+                    <div style="position: relative;" [hidden]="!isLogged">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <div class="badge">
+                            {{cart.products.length}}
+                        </div>
+                    </div>
+                </a>
             </div>
             <div>
                 <a [hidden]="!isLogged">Account</a>

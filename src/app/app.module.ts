@@ -13,6 +13,7 @@ import { LogoComponent } from './components/logo/logo.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProductItemComponent } from './components/product-item/product-item.com
     LogoComponent,
     FooterComponent,
     CategoriesComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
