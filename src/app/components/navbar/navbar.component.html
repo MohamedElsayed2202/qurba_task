@@ -7,6 +7,9 @@
             </div>
         </div>
         <div class="nav__links">
+            <div>
+                <input type="text" placeholder="Search" [(ngModel)]="keyword" (change)="search()">
+            </div>
             <div style="position: relative;" [hidden]="!isLogged">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <div class="badge">

@@ -3,12 +3,17 @@
     <div class="home__main">
         <app-categories></app-categories>
         <div class="left-side">
-            <ng-container *ngIf="productsByCategory.length > 0">
+            <ng-container *ngIf="productsBySearch.length > 0 ">
+                <div class="products">
+                    <app-product-item *ngFor="let product of productsBySearch" [product]="product"></app-product-item>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="productsByCategory.length > 0 && productsBySearch.length === 0">
                 <div class="products">
                     <app-product-item *ngFor="let product of productsByCategory" [product]="product"></app-product-item>
                 </div>
             </ng-container>
-            <ng-container *ngIf="productsByCategory.length === 0">
+            <ng-container *ngIf="productsByCategory.length === 0 && productsBySearch.length === 0">
                 <div class="products">
                     <app-product-item *ngFor="let product of allProducts" [product]="product"></app-product-item>
                 </div>

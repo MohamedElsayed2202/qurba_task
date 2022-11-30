@@ -27,7 +27,7 @@ export class AuthService {
     this.httpClient.post<any>(environment.AuthApi, JSON.stringify(cred), this.headerOptions)
     .subscribe(value => {
       localStorage.setItem('token', value.token);
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl("/home");
     })
    }
 

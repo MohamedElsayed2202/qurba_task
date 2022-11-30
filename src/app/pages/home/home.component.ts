@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   category: string = '';
   allProducts: ProductItem[] = [];
   productsByCategory: ProductItem[] = [];
+  productsBySearch: ProductItem[] = [];
   constructor(private products: ProductsService) { }
 
   ngOnInit(): void {
@@ -22,6 +23,9 @@ export class HomeComponent implements OnInit {
     });
     this.products.getProductsByCategory().subscribe(value => {
       this.productsByCategory = value;
+    })
+    this.products.getProductsBySearch().subscribe(value => {
+      this.productsBySearch = value;
     })
   }
 

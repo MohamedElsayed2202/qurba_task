@@ -30,7 +30,8 @@ export class ProductsService {
   private headerOptions
   private selectedCategory: BehaviorSubject<string>;
   private products: BehaviorSubject<ProductItem[]>;
-  private productsByCategory: BehaviorSubject<ProductItem[]>
+  private productsByCategory: BehaviorSubject<ProductItem[]>;
+  private productsBySearch: BehaviorSubject<ProductItem[]>;
     constructor(private httpClient: HttpClient) {
   this.categoreis = new BehaviorSubject<string[]>([]);
   this.headerOptions = {
@@ -40,7 +41,8 @@ export class ProductsService {
   }
   this.selectedCategory = new BehaviorSubject<string>('');
   this.products = new BehaviorSubject<ProductItem[]>([]);
-  this.productsByCategory = new BehaviorSubject<ProductItem[]>([])
+  this.productsByCategory = new BehaviorSubject<ProductItem[]>([]);
+  this.productsBySearch = new BehaviorSubject<ProductItem[]>([]);
 }
 
 getAllCategories(): BehaviorSubject < string[] > {
@@ -80,5 +82,19 @@ private setProductsByCategpry(): void{
 }
 getProductsByCategory(): BehaviorSubject<ProductItem[]>{
   return this.productsByCategory;
+}
+getProductsBySearch(): BehaviorSubject<ProductItem[]>{
+  return this.productsBySearch;
+}
+
+setProdctsBySearch(keyword: string): void{
+  if(keyword !== ''){
+    this.httpClient.get<Products>(`${environment.ProductsBySearchApi}${keyword}`)
+  .subscribe(value => {
+    this.productsBySearch.next(value.products);
+  })
+  }else{
+    this.productsBySearch.next([]);
+  }
 }
 }
